@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line_count.c                                   :+:      :+:    :+:   */
+/*   ft_countt_occ.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/20 16:54:41 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/26 11:32:20 by labdello         ###   ########.fr       */
+/*   Created: 2024/07/26 15:39:03 by labdello          #+#    #+#             */
+/*   Updated: 2024/07/28 07:35:06 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#define BUFFER_SIZE 5
-
-size_t	get_line_count(char *filename)
+int	ft_countt_occ(char **tab, char c)
 {
-	ssize_t	i;
-	ssize_t	count;
-	int		fd;
-	char	buffer[BUFFER_SIZE];
+	size_t	i;
+	size_t	j;
+	size_t	count;
 
+	i = 0;
 	count = 0;
-	fd = open(filename, O_RDONLY);
-	while (read(fd, buffer, BUFFER_SIZE))
+	while (tab[i] != NULL)
 	{
-		i = 0;
-		while (buffer[i] != '\0')
+		j = 0;
+		while (tab[i][j] != '\0')
 		{
-			if (buffer[i] == '\n')
+			if (tab[i][j] == c)
 				count++;
-			i++;
+			j++;
 		}
+		i++;
 	}
-	close(fd);
 	return (count);
 }

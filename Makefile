@@ -6,8 +6,7 @@ MLX = ./mlx_linux/libmlx.a
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz 
 CFLAGS = -Wall -Wextra -Werror -I ./includes -I ./mlx_linux 
 
-SRCS = srcs/main.c srcs/get_next_line.c srcs/get_line_count.c srcs/utils.c \
-			 srcs/error.c
+SRCS = srcs/main.c srcs/utils.c srcs/error.c srcs/flood.c
 
 OBJS = ${SRCS:.c=.o}
 

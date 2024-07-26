@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_occ.c                                     :+:      :+:    :+:   */
+/*   get_line_count.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/28 07:35:26 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/28 07:39:56 by labdello         ###   ########.fr       */
+/*   Created: 2024/07/20 16:54:41 by labdello          #+#    #+#             */
+/*   Updated: 2024/07/28 09:04:40 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_occ(char *str, char c)
+size_t	get_line_count(int fd)
 {
-	size_t	i;
 	size_t	count;
 
-	i = 0;
 	count = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			count++;
-		i++;
-	}
+	while (get_next_line(fd))
+		count++;
+	close(fd);
 	return (count);
 }

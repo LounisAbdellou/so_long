@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:41:56 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/26 17:47:28 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:32:42 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_file(char *filepath, t_env *env)
 	int		fd;
 	char	**tab;
 	char	buffer[5];
- 
+
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 		return_error("File does not exist\n", 1, env);
@@ -55,6 +55,21 @@ void	check_file(char *filepath, t_env *env)
 	close(fd);
 }
 
+int	has_extra_param(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != start && str[i] != end
+			&& str[i] != item && str[i] != wall && str[i] != floor)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	check_map(t_env *env)
 {
 	size_t	i;
@@ -62,14 +77,17 @@ void	check_map(t_env *env)
 	i = 1;
 	while (env->map[i] != NULL)
 	{
+		if (has_extra_param(env->map[i]))
+			return_error("Map has unknown parameters\n", 1, env);
 		if (ft_strlen(env->map[i]) != ft_strlen(env->map[i - 1]))
 			return_error("Map shape should be rectangular\n", 1, env);
 		i++;
 	}
-	if (ft_count_occ(env->map, 'C') < 1)
+	if (ft_countt_occ(env->map, item) < 1)
 		return_error("Map should have at least one collectible item\n", 1, env);
-	else if (ft_count_occ(env->map, 'P') != 1)
-		return_error("Map should have only one starting position\n", 1, env);
-	else if (ft_count_occ(env->map, 'E') != 1)
-		return_error("Map should have only one exit\n", 1, env);
+	else if (ft_countt_occ(env->map, start) != 1)
+		return_error("Map should have exactly one starting position\n", 1, env);
+	else if (ft_countt_occ(env->map, end) != 1)
+		return_error("Map should have exactly one exit\n", 1, env);
+	flood(env);
 }
