@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:28:39 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/26 13:04:51 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:35:51 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 }	t_list;
 
 size_t		ft_nbrlen(int nbr);
+size_t		ft_tablen(char **tab);
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, char *src, size_t n);
 size_t		ft_strlcat(char *dest, char *src, size_t n);
@@ -45,6 +46,7 @@ int			ft_atoi(const char *str);
 int			ft_strcmp(char *s1, char *s2);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
+int			ft_count_occ(char **tab, char c);
 char		*ft_itoa(int n);
 char		*ft_strndup(char const *s, size_t n);
 char		*ft_strnstr(char *str, char *needle, size_t n);
