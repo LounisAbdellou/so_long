@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_puthex_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 13:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/03 18:53:39 by labdello         ###   ########.fr       */
+/*   Created: 2024/06/02 19:11:42 by labdello          #+#    #+#             */
+/*   Updated: 2024/08/05 16:14:23 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_tab(char **tab)
+void	ft_puthex_fd(unsigned int hex, int capitilize, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (tab[i] != NULL)
+	if (hex >= 16)
 	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
+		ft_puthex_fd(hex / 16, capitilize, fd);
+		ft_puthex_fd(hex % 16, capitilize, fd);
 	}
-	free(tab);
+	else
+	{
+		if (hex <= 9)
+			ft_putchar_fd(hex + 48, fd);
+		else
+		{
+			if (capitilize)
+				ft_putchar_fd((hex - 10) + 65, fd);
+			else
+				ft_putchar_fd((hex - 10) + 97, fd);
+		}
+	}
 }
