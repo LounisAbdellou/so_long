@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 16:33:29 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:24:12 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_env
 	void	*win;
 	void	*img;
 	char	**map;
+	int		screen_w;
+	int		screen_h;
 	t_point	*start_pos;
 }	t_env;
 

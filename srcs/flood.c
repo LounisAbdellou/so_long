@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:07:48 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 17:03:10 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:30:13 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	flood(t_env *env)
 	flood_exit(map_copy, &is_exited, env->start_pos->x, env->start_pos->y);
 	if (!is_exited)
 		return_error("Map cannot be exited\n", 1, env);
-	printf("env->map[1][1] = %c\n", env->map[1][1]);
 }
