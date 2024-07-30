@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 18:24:12 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:46:25 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,15 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WIDTH 1200
-# define HEIGHT 700
+# define FLOOR "../assets/sprites/floor.xpm" 
+# define WALL "../assets/sprites/wall.xpm"
+# define COIN "../assets/sprites/coin-bag.xpm"
+# define EXIT_O "../assets/sprites/open-exit.xpm"
+# define EXIT_C "../assets/sprites/exit-closed.xpm"
+# define PLAYER_UP "../assets/sprites/player/back.xpm"
+# define PLAYER_DOWN "../assets/sprites/player/front.xpm"
+# define PLAYER_LEFT "../assets/sprites/player/left.xpm"
+# define PLAYER_RIGHT "../assets/sprites/player/right.xpm"
 
 typedef enum e_param
 {
@@ -27,6 +34,19 @@ typedef enum e_param
 	end = 'E',
 	start = 'P',
 }	t_param;
+
+typedef enum e_img
+{
+	wall_i = 0,
+	floor_i = 1,
+	coin_i = 2,
+	open_i = 3,
+	close_i = 4,
+	p_up = 5,
+	p_down = 6,
+	p_left = 7,
+	p_right = 8,
+}	t_img;
 
 typedef struct s_point
 {
@@ -38,7 +58,7 @@ typedef struct s_env
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	void	**img;
 	char	**map;
 	int		screen_w;
 	int		screen_h;
