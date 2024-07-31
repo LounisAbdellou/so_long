@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:07:48 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/31 09:14:42 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:06:39 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,45 @@ int	is_walled(char **map)
 	return (1);
 }
 
+char	**ft_tabdup(char **tab)
+{
+	size_t	i;
+	char	**dup;
+
+	i = 0;
+	if (tab == NULL)
+		return (NULL);
+	dup = malloc(sizeof(char *) * ft_tablen(tab) + 1);
+	if (dup == NULL)
+		return (NULL);
+	dup[ft_tablen(tab)] = NULL;
+	while (tab[i] != NULL)
+	{
+		dup[i] = ft_strdup(tab[i]);
+		if (dup[i] == NULL)
+		{
+			ft_free_tab(dup);
+			return (NULL);
+		}
+		i++;
+	}
+	return (dup);
+}
+
 void	flood(t_env *env)
 {
 	int		is_exited;
 	char	**map_copy;
 
 	is_exited = 0;
-	map_copy = env->map;
-	if (!is_walled(map_copy))
-		return_error("Map is not correctly walled\n", 1, env);
+	map_copy = ft_tabdup(env->map);
 	flood_exit(map_copy, &is_exited, env->start_pos.x, env->start_pos.y);
+	if (!is_walled(map_copy))
+	{
+		ft_free_tab(map_copy);
+		return_error("Map is not correctly walled\n", 1, env);
+	}
+	ft_free_tab(map_copy);
 	if (!is_exited)
 		return_error("Map cannot be exited\n", 1, env);
 }
