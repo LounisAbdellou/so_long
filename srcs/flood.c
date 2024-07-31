@@ -6,15 +6,20 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:07:48 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 17:30:13 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/31 09:14:42 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	flood_exit(char **map, int *is_exited, size_t x, size_t y)
+void	flood_exit(char **map, int *is_exited, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= ft_strlen(map[0]) || y >= ft_tablen(map))
+	int	max_x;
+	int	max_y;
+
+	max_x = ft_strlen(map[0]) - 1;
+	max_y = ft_tablen(map) - 1;
+	if (x < 0 || y < 0 || x > max_x || y > max_y)
 		return ;
 	if (map[y][x] == 'F' || map[y][x] == wall)
 		return ;
@@ -62,7 +67,7 @@ void	flood(t_env *env)
 	map_copy = env->map;
 	if (!is_walled(map_copy))
 		return_error("Map is not correctly walled\n", 1, env);
-	flood_exit(map_copy, &is_exited, env->start_pos->x, env->start_pos->y);
+	flood_exit(map_copy, &is_exited, env->start_pos.x, env->start_pos.y);
 	if (!is_exited)
 		return_error("Map cannot be exited\n", 1, env);
 }

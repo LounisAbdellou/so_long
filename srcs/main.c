@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 18:50:58 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/31 09:26:58 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_env	init_env()
 	env.screen_h = env.screen_h - 37;
 	env.win = NULL;
 	env.map = NULL;
-	env.start_pos = NULL;
 	return (env);
 }
 
@@ -43,7 +42,7 @@ void	init_start_pos(t_env *env)
 			{
 				s_pos.x = j;
 				s_pos.y = i;
-				env->start_pos = &s_pos;
+				env->start_pos = s_pos;
 				return ;
 			}
 			j++;
@@ -91,6 +90,7 @@ void	so_long(char *filepath, t_env *env)
 		return_error("Error initializing window\n", 1, env);
 	mlx_hook(env->win, 2, 1L << 0, handle_keydown, env);
 	mlx_hook(env->win, 17, 1L << 0, destroy, env);
+	draw_map(env);
 	mlx_loop(env->mlx);
 }
 

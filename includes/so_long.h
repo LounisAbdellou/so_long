@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 19:46:25 by labdello         ###   ########.fr       */
+/*   Updated: 2024/07/31 09:58:23 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define FLOOR "../assets/sprites/floor.xpm" 
-# define WALL "../assets/sprites/wall.xpm"
-# define COIN "../assets/sprites/coin-bag.xpm"
-# define EXIT_O "../assets/sprites/open-exit.xpm"
-# define EXIT_C "../assets/sprites/exit-closed.xpm"
-# define PLAYER_UP "../assets/sprites/player/back.xpm"
-# define PLAYER_DOWN "../assets/sprites/player/front.xpm"
-# define PLAYER_LEFT "../assets/sprites/player/left.xpm"
-# define PLAYER_RIGHT "../assets/sprites/player/right.xpm"
+# define FLOOR "./assets/sprites/floor.xpm" 
+# define WALL "./assets/sprites/wall.xpm"
+# define COIN "./assets/sprites/coin-bag.xpm"
+# define EXIT_O "./assets/sprites/open-exit.xpm"
+# define EXIT_C "./assets/sprites/exit-closed.xpm"
+# define PLAYER_UP "./assets/sprites/player/back.xpm"
+# define PLAYER_DOWN "./assets/sprites/player/front.xpm"
+# define PLAYER_LEFT "./assets/sprites/player/left.xpm"
+# define PLAYER_RIGHT "./assets/sprites/player/right.xpm"
 
 typedef enum e_param
 {
@@ -37,8 +37,8 @@ typedef enum e_param
 
 typedef enum e_img
 {
-	wall_i = 0,
-	floor_i = 1,
+	floor_i = 0,
+	wall_i = 1,
 	coin_i = 2,
 	open_i = 3,
 	close_i = 4,
@@ -62,13 +62,14 @@ typedef struct s_env
 	char	**map;
 	int		screen_w;
 	int		screen_h;
-	t_point	*start_pos;
+	t_point	start_pos;
 }	t_env;
 
 int		destroy(t_env *env);
 int		handle_keydown(int keycode, t_env *env);
 char	*sanitize_line(char *line);
 void	flood(t_env *env);
+void	draw_map(t_env *env);
 void	check_map(t_env *env);
 void	check_file(char *filepath, t_env *env);
 void	return_error(char *error_message, int exit_status, t_env *env);
