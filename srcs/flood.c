@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:07:48 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/31 16:21:02 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:48:44 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ char	**ft_tabdup(char **tab)
 	i = 0;
 	if (tab == NULL)
 		return (NULL);
-	dup = malloc(sizeof(char *) * ft_tablen(tab) + 1);
+	dup = malloc(sizeof(char *) * (ft_tablen(tab) + 1));
 	if (dup == NULL)
 		return (NULL);
-	*dup = NULL;
 	while (tab[i] != NULL)
 	{
 		dup[i] = ft_strdup(tab[i]);

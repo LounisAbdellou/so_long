@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/31 09:58:23 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:43:35 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char	*sanitize_line(char *line);
 void	flood(t_env *env);
 void	draw_map(t_env *env);
 void	check_map(t_env *env);
+void	free_img_tab(t_env *env);
 void	check_file(char *filepath, t_env *env);
 void	return_error(char *error_message, int exit_status, t_env *env);
 

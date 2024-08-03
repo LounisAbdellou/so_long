@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:40:36 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/26 16:04:23 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:27:15 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	destroy(t_env *env)
 {
+	if (env->img != NULL)
+		free_img_tab(env);
 	if (env->map != NULL)
 		ft_free_tab(env->map);
 	if (env->win != NULL)
@@ -45,4 +47,19 @@ char	*sanitize_line(char *line)
 		i++;
 	}
 	return (line);
+}
+
+void	free_img_tab(t_env *env)
+{
+	size_t	i;
+
+	i = 0;
+	/* (void)env; */
+	while (i <= 9)
+	{
+		if (env->img[i] != NULL)
+			mlx_destroy_image(env->mlx, env->img[i]);
+		i++;
+	}
+	free(env->img);
 }
