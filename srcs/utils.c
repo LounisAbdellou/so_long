@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:40:36 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/03 19:27:15 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/04 11:24:54 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	destroy(t_env *env)
 {
-	if (env->img != NULL)
-		free_img_tab(env);
+	/* if (env->img != NULL) */
+	/* 	free_img_tab(env); */
 	if (env->map != NULL)
 		ft_free_tab(env->map);
 	if (env->win != NULL)
@@ -32,6 +32,14 @@ int	handle_keydown(int keycode, t_env *env)
 {
 	if (keycode == 65307)
 		return (destroy(env));
+	else if (keycode == 119)
+		return (move_character(env, 'U'));
+	else if (keycode == 115)
+		return (move_character(env, 'D'));
+	else if (keycode == 97)
+		return (move_character(env, 'L'));
+	else if (keycode == 100)
+		return (move_character(env, 'R'));
 	return (0);
 }
 
@@ -61,5 +69,4 @@ void	free_img_tab(t_env *env)
 			mlx_destroy_image(env->mlx, env->img[i]);
 		i++;
 	}
-	free(env->img);
 }

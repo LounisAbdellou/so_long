@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:07:48 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/03 18:48:44 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/04 10:34:05 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	flood(t_env *env)
 
 	is_exited = 0;
 	map_copy = ft_tabdup(env->map);
-	flood_exit(map_copy, &is_exited, env->start_pos.x, env->start_pos.y);
+	flood_exit(map_copy, &is_exited, env->current_pos.x, env->current_pos.y);
 	if (!is_walled(map_copy))
 	{
 		ft_free_tab(map_copy);

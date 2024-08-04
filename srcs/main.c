@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/03 19:23:47 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/04 11:23:35 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_env(t_env *env)
 	env->win = NULL;
 	env->map = NULL;
 	env->img = NULL;
+	env->is_open = 0;
 }
 
 void	init_start_pos(t_env *env)
@@ -40,7 +41,7 @@ void	init_start_pos(t_env *env)
 			{
 				s_pos.x = j;
 				s_pos.y = i;
-				env->start_pos = s_pos;
+				env->current_pos = s_pos;
 				return ;
 			}
 			j++;
@@ -49,17 +50,15 @@ void	init_start_pos(t_env *env)
 	}
 }
 
-void	**init_images(t_env *env)
+void	init_images(t_env *env, void **img_tab)
 {
 	int		w;
 	int		h;
 	/* int		i; */
-	void	**img_tab;
 
 	/* i = 0; */
 	w = 32;
 	h = 32;
-	img_tab = malloc(sizeof(void *) * 9);
 	img_tab[floor_i] = mlx_xpm_file_to_image(env->mlx, FLOOR, &w, &h);
 	img_tab[wall_i] = mlx_xpm_file_to_image(env->mlx, WALL, &w, &h);
 	img_tab[coin_i] = mlx_xpm_file_to_image(env->mlx, COIN, &w, &h);
@@ -75,7 +74,6 @@ void	**init_images(t_env *env)
 	/* 		return (free_img_tab(env)); */
 	/* 	i++; */
 	/* } */
-	return (img_tab);
 }
 
 void	handle_file_parse(int fd, size_t line_count, t_env *env)
@@ -125,10 +123,12 @@ int	main(int ac, char **av)
 {
 	int		fd;
 	t_env	env;
+	void	*img_tab[9];
 
 	fd = open(av[1], O_RDONLY);
 	init_env(&env);
-	env.img = init_images(&env);
+	init_images(&env, img_tab);
+	env.img = img_tab;
 	if (ac != 2)
 		return_error("Wrong number of arguments\n", 1, &env);
 	check_file(av[1], &env);

@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/03 18:43:35 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/04 11:16:04 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,20 @@ typedef struct s_env
 	char	**map;
 	int		screen_w;
 	int		screen_h;
-	t_point	start_pos;
+	t_point	current_pos;
+	int		is_open;
 }	t_env;
 
 int		destroy(t_env *env);
 int		handle_keydown(int keycode, t_env *env);
+int		move_character(t_env *env, char direction);
 char	*sanitize_line(char *line);
 void	flood(t_env *env);
 void	draw_map(t_env *env);
 void	check_map(t_env *env);
 void	free_img_tab(t_env *env);
 void	check_file(char *filepath, t_env *env);
+void	put_image(t_env *env, char img_type, size_t x, size_t y);
 void	return_error(char *error_message, int exit_status, t_env *env);
 
 #endif

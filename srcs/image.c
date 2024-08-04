@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:00:04 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/31 16:11:41 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/04 11:52:12 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void	put_image(t_env *env, char img_type, size_t x, size_t y)
 		mlx_put_image_to_window(env->mlx, env->win, env->img[p_right], x, y);
 	else if (img_type == end)
 		mlx_put_image_to_window(env->mlx, env->win, env->img[close_i], x, y);
+	else if (img_type == 'U')
+		mlx_put_image_to_window(env->mlx, env->win, env->img[p_up], x, y);
+	else if (img_type == 'D')
+		mlx_put_image_to_window(env->mlx, env->win, env->img[p_down], x, y);
+	else if (img_type == 'L')
+		mlx_put_image_to_window(env->mlx, env->win, env->img[p_left], x, y);
+	else if (img_type == 'R')
+		mlx_put_image_to_window(env->mlx, env->win, env->img[p_right], x, y);
+	else if (img_type == 'O')
+		mlx_put_image_to_window(env->mlx, env->win, env->img[open_i], x, y);
 }
 
 void	draw_map(t_env *env)
