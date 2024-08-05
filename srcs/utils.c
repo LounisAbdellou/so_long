@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:40:36 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/05 14:44:26 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:58:04 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	free_img_tab(t_env *env)
 	size_t	i;
 
 	i = 0;
-	/* (void)env; */
-	while (i <= 9)
+	while (i < 9)
 	{
 		if (env->img[i] != NULL)
 			mlx_destroy_image(env->mlx, env->img[i]);
