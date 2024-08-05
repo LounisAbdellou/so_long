@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/04 11:16:04 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:34:51 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ int		destroy(t_env *env);
 int		handle_keydown(int keycode, t_env *env);
 int		move_character(t_env *env, char direction);
 char	*sanitize_line(char *line);
+void	check_img(t_env *env);
+void	init_env(t_env *env);
+void	init_start_pos(t_env *env);
+void	init_images(t_env *env, void **img_tab);
 void	flood(t_env *env);
 void	draw_map(t_env *env);
 void	check_map(t_env *env);
