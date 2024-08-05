@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:40:36 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/04 11:24:54 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:44:26 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	destroy(t_env *env)
 {
-	/* if (env->img != NULL) */
-	/* 	free_img_tab(env); */
+	if (env->img != NULL)
+		free_img_tab(env);
 	if (env->map != NULL)
 		ft_free_tab(env->map);
 	if (env->win != NULL)
