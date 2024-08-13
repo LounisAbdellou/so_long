@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:41:56 by labdello          #+#    #+#             */
-/*   Updated: 2024/07/30 16:32:42 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:35:48 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	return_error(char *error_message, int exit_status, t_env *env)
 	exit(exit_status);
 }
 
-void	check_file_extension(char *filename, t_env *env)
+void	check_file_extension(char *filename, t_env *env, char **path_tab)
 {
 	char	**tab;
 
@@ -31,6 +31,7 @@ void	check_file_extension(char *filename, t_env *env)
 	if (ft_strcmp(tab[ft_tablen(tab) - 1], "ber") != 0)
 	{
 		ft_free_tab(tab);
+		ft_free_tab(path_tab);
 		return_error("Wrong file extension, only .ber are accepted\n", 1, env);
 	}
 	ft_free_tab(tab);
@@ -50,7 +51,7 @@ void	check_file(char *filepath, t_env *env)
 	tab = ft_split(filepath, '/');
 	if (tab == NULL)
 		return_error("Something went wrong with the filepath\n", 1, env);
-	check_file_extension(tab[ft_tablen(tab) - 1], env);
+	check_file_extension(tab[ft_tablen(tab) - 1], env, tab);
 	ft_free_tab(tab);
 	close(fd);
 }
