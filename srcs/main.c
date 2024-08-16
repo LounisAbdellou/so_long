@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:01:50 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/12 14:56:07 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/16 17:51:38 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int ac, char **av)
 	t_env	env;
 	void	*img_tab[9];
 
+	ft_printf("%s\n", PATH);
 	*img_tab = NULL;
 	fd = open(av[1], O_RDONLY);
 	init_env(&env);

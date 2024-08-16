@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:32:19 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/05 16:32:56 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/16 17:37:18 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,30 @@ void	init_start_pos(t_env *env)
 	}
 }
 
-void	init_images(t_env *env, void **img_tab)
+void	*alloc_image(void *mlx, char *relative_path)
 {
 	int		w;
 	int		h;
+	char	*absolute_path;
+	void	*img_ptr;
 
 	w = 32;
 	h = 32;
-	img_tab[floor_i] = mlx_xpm_file_to_image(env->mlx, FLOOR, &w, &h);
-	img_tab[wall_i] = mlx_xpm_file_to_image(env->mlx, WALL, &w, &h);
-	img_tab[coin_i] = mlx_xpm_file_to_image(env->mlx, COIN, &w, &h);
-	img_tab[open_i] = mlx_xpm_file_to_image(env->mlx, EXIT_O, &w, &h);
-	img_tab[close_i] = mlx_xpm_file_to_image(env->mlx, EXIT_C, &w, &h);
-	img_tab[p_up] = mlx_xpm_file_to_image(env->mlx, PLAYER_UP, &w, &h);
-	img_tab[p_down] = mlx_xpm_file_to_image(env->mlx, PLAYER_DOWN, &w, &h);
-	img_tab[p_left] = mlx_xpm_file_to_image(env->mlx, PLAYER_LEFT, &w, &h);
-	img_tab[p_right] = mlx_xpm_file_to_image(env->mlx, PLAYER_RIGHT, &w, &h);
+	absolute_path = ft_strjoin(PATH, relative_path);
+	img_ptr = mlx_xpm_file_to_image(mlx, absolute_path, &w, &h);
+	free(absolute_path);
+	return (img_ptr);
+}
+
+void	init_images(t_env *env, void **tab)
+{
+	tab[floor_i] = alloc_image(env->mlx, FLOOR);
+	tab[wall_i] = alloc_image(env->mlx, WALL);
+	tab[coin_i] = alloc_image(env->mlx, COIN);
+	tab[open_i] = alloc_image(env->mlx, EXIT_O);
+	tab[close_i] = alloc_image(env->mlx, EXIT_C);
+	tab[p_up] = alloc_image(env->mlx, PLAYER_UP);
+	tab[p_down] = alloc_image(env->mlx, PLAYER_DOWN);
+	tab[p_left] = alloc_image(env->mlx, PLAYER_LEFT);
+	tab[p_right] = alloc_image(env->mlx, PLAYER_RIGHT);
 }

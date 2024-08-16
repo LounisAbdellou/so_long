@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:23:41 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/03 19:08:02 by labdello         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:43:54 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,29 @@ size_t	find_index(char *str, char needle)
 		i++;
 	}
 	return (0);
+}
+
+static char	*trim_line(char *line)
+{
+	size_t	i;
+	size_t	len;
+	char	*str;
+
+	i = 0;
+	len = ft_strlen(line);
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	if (line[i] == 0 || line[i + 1] == 0)
+		return (NULL);
+	i += 1;
+	str = ft_strndup(line + i, len - i);
+	if (*str == '\0')
+	{
+		free(str);
+		str = NULL;
+	}
+	line[i] = '\0';
+	return (str);
 }
 
 static char	*get_line(int fd, char *rest, char *buffer)
@@ -57,29 +80,6 @@ static char	*get_line(int fd, char *rest, char *buffer)
 			break ;
 	}
 	return (rest);
-}
-
-static char	*trim_line(char *line)
-{
-	size_t	i;
-	size_t	len;
-	char	*str;
-
-	i = 0;
-	len = ft_strlen(line);
-	while (line[i] != '\n' && line[i] != '\0')
-		i++;
-	if (line[i] == 0 || line[i + 1] == 0)
-		return (NULL);
-	i += 1;
-	str = ft_strndup(line + i, len - i);
-	if (*str == '\0')
-	{
-		free(str);
-		str = NULL;
-	}
-	line[i] = '\0';
-	return (str);
 }
 
 char	*get_next_line(int fd)

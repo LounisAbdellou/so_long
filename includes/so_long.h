@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 18:03:59 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/05 16:34:51 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:13:46 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define FLOOR "./assets/sprites/floor.xpm" 
-# define WALL "./assets/sprites/wall.xpm"
-# define COIN "./assets/sprites/coin-bag.xpm"
-# define EXIT_O "./assets/sprites/open-exit.xpm"
-# define EXIT_C "./assets/sprites/exit-closed.xpm"
-# define PLAYER_UP "./assets/sprites/player/back.xpm"
-# define PLAYER_DOWN "./assets/sprites/player/front.xpm"
-# define PLAYER_LEFT "./assets/sprites/player/left.xpm"
-# define PLAYER_RIGHT "./assets/sprites/player/right.xpm"
+# ifndef PATH
+#  define PATH "."
+# endif
+
+# define FLOOR "/assets/sprites/floor.xpm" 
+# define WALL "/assets/sprites/wall.xpm"
+# define COIN "/assets/sprites/coin-bag.xpm"
+# define EXIT_O "/assets/sprites/open-exit.xpm"
+# define EXIT_C "/assets/sprites/exit-closed.xpm"
+# define PLAYER_UP "/assets/sprites/player/back.xpm"
+# define PLAYER_DOWN "/assets/sprites/player/front.xpm"
+# define PLAYER_LEFT "/assets/sprites/player/left.xpm"
+# define PLAYER_RIGHT "/assets/sprites/player/right.xpm"
 
 typedef enum e_param
 {

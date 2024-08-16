@@ -6,7 +6,7 @@
 /*   By: labdello <labdello@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 10:24:18 by labdello          #+#    #+#             */
-/*   Updated: 2024/08/05 16:22:37 by labdello         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:12:32 by labdello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,19 @@ void	handle_special_square(t_env *env, t_point next_pos)
 
 int	execute_move(t_env *env, t_point curr_pos, t_point next_pos, char direction)
 {
-	int		next_valid;
-	char	square;
+	int					next_valid;
+	char				square;
+	static unsigned int	count;
 
+	if (count < 1)
+		count = 0;
 	square = env->map[next_pos.y][next_pos.x];
 	next_valid = (square == floor || square == start || square == item);
 	if (square == wall)
 		return (0);
-	else if (env->map[curr_pos.y][curr_pos.x] == end && next_valid)
+	count += 1;
+	ft_printf("Move count: %u\n", count);
+	if (env->map[curr_pos.y][curr_pos.x] == end && next_valid)
 	{
 		put_image(env, direction, next_pos.x * 32, next_pos.y * 32);
 		put_image(env, end, curr_pos.x * 32, curr_pos.y * 32);
@@ -84,11 +89,8 @@ int	execute_move(t_env *env, t_point curr_pos, t_point next_pos, char direction)
 
 int	move_character(t_env *env, char direction)
 {
-	static unsigned int	count;
-	t_point				next_pos;
+	t_point	next_pos;
 
-	if (count < 1)
-		count = 0;
 	next_pos.x = env->current_pos.x;
 	next_pos.y = env->current_pos.y;
 	if (direction == 'U')
@@ -101,8 +103,6 @@ int	move_character(t_env *env, char direction)
 		next_pos.x += 1;
 	if (execute_move(env, env->current_pos, next_pos, direction))
 	{
-		count += 1;
-		ft_printf("Move count: %u\n", count);
 		env->current_pos.x = next_pos.x;
 		env->current_pos.y = next_pos.y;
 		return (1);

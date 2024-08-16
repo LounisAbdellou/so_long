@@ -3,13 +3,15 @@ NAME = so_long
 LIBFT = ./libft/libft.a
 MLX = ./mlx_linux/libmlx.a 
 
+TEST = "\"test\""
+
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz 
-CFLAGS = -Wall -Wextra -Werror -I ./includes -I ./mlx_linux 
+CFLAGS = -Wall -Wextra -Werror -D PATH="\"$(shell pwd)\"" -Iincludes -Imlx_linux 
 
 SRCS = srcs/main.c srcs/utils.c srcs/error.c srcs/flood.c srcs/image.c \
 	   srcs/game.c srcs/init.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS:.c=.o} 
 
 all: ${NAME}
 
